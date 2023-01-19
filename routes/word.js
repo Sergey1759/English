@@ -13,6 +13,13 @@ router.get('/all', async function(req, res, next) {
     res.render('word', { title: 'Express' , allWords});
 });
 
+router.get('/test', async function(req, res, next) {
+    let verified = Token.verify(req.cookies.token);
+    const allWords = await ApiWords.getByUserId(verified.user.id);
+    let JsonWords = JSON.stringify(allWords);
+    res.render('test', { title: 'Express' , JsonWords});
+});
+
 router.post('/save', async function(req, res, next) {
     console.log(req.body);
     let result = await ApiWords.changeCurrent(req.body);

@@ -1,0 +1,24 @@
+<div class="container_test">
+    <h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600"><span id="now">1</span>/<span id="all"> 30</span> Questions</h3>
+    <div class="image" style="background-image: url('https://www.foodlocker.com.ng/public/product/green%20apple.png')"></div>
+    <div>
+        <label for="answer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter correct answer <span id="word">(Apple is)</span></label>
+        <input type="text" id="answer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter correct answer" required>
+    </div>
+    <button type="button" id="next" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">send</button>
+</div>
+
+<script>
+    window.onload = () => {
+        window.words = {{{JsonWords}}};
+
+        const script = document.createElement('script');
+        script.src = '/javascripts/test.js';
+        script.async = true;
+
+        script.onload = () => console.log('Script loaded successfuly');
+        script.onerror = () => console.log('Error occurred while loading script');
+
+        document.body.appendChild(script);
+    }
+</script>
