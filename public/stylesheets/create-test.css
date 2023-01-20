@@ -1,0 +1,7 @@
+.container-create-test label {
+  height: 100%;
+  flex-direction: column;
+}
+.container-create-test .block {
+  width: 100%;
+}
