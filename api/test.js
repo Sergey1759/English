@@ -19,10 +19,8 @@ class Test {
     static async getAllTestsByUserId(userId){
         return await TestModel.find({userId});
     }
-    static async getByIdUser(){
-        return await TestModel.find({userId: 556451309}).populate('words').exec((err,res) =>{
-            console.log(res[0].words)
-        });
+    static async getByIdUserAndTestID(userId,_id){
+        return await TestModel.findOne({userId : userId, _id : _id }).populate('words').exec();
     }
 }
 
