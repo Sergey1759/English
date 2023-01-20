@@ -1,17 +1,18 @@
-const div = document.querySelector('div');
+const images = document.querySelectorAll('.choose-image');
 const save = document.querySelector('#save');
 
-div.addEventListener('click',async (event)=>{
-    if(event.target.className.includes('choose-image')) {
+images.forEach(el =>{
+    el.addEventListener('click', ()=>{
         clearActiveClass();
-        event.target.classList.add('active');
-    }
-    if(event.target.id == 'save') {
-        let values = getCurrentValues();
-        let res = await postData('http://localhost:3000/word/save',values);
-        console.log(res);
-    }
+        el.classList.add('active');
+    })
 })
+
+save.addEventListener('click',async ()=>{
+    let values = getCurrentValues();
+    let res = await postData('http://localhost:3000/word/save',values);
+    console.log(res)
+});
 
 function clearActiveClass() {
     document.querySelector('.active').classList.remove('active');
