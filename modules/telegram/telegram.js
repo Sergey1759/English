@@ -1,10 +1,12 @@
 const TelegramBot = require('node-telegram-bot-api');
-const User = require('../api/user');
-const Word = require('../api/word');
+const User = require('../../api/user');
+const Word = require('../../api/word');
 
-const translate = require('../modules/puppeteer/getContextReverso');
-const getImages = require('../modules/puppeteer/getImages');
-const getImagesFromIStock = require('../modules/puppeteer/getImagesFromIstock');
+const getDescription = require('./image-description');
+
+const translate = require('../puppeteer/getContextReverso');
+const getImages = require('../puppeteer/getImages');
+const getImagesFromIStock = require('../puppeteer/getImagesFromIstock');
 
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, {polling: true});
 const URLtoAuth = 'http://127.0.0.1:3000/auth';
@@ -41,15 +43,9 @@ bot.on('message', async (msg) => {
 
             const savedWord = new Word(word,result.meanings,result.examples,images,msg.from.id);
             await savedWord.createWord();
-            let img = images[0] || 'https://previews.123rf.com/images/kaymosk/kaymosk1804/kaymosk180400006/100130939-error-404-page-not-found-error-with-glitch-effect-on-screen-vector-illustration-for-your-design-.jpg';
-            await bot.sendPhoto(chatId,img,{caption: `
-            <strong>${word}</strong> -- <i>${result?.meanings[0]}, ${result?.meanings[1]}, ${result?.meanings[2]}</i>
-            
-${result?.examples[0]?.from}
-${result?.examples[0]?.to}
-
-${result?.examples[1]?.from}
-${result?.examples[1]?.to}
-            `,parse_mode: 'html'})
+            const baseImage = 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png';
+            let img = images[0] || baseImage;
+            const imageDescription = getDescription(word,result);
+            await bot.sendPhoto(chatId,img,{caption: imageDescription,parse_mode: 'html'})
     }
 });
