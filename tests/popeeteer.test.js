@@ -1,4 +1,4 @@
-let getImages = require('../modules/puppeteer/getImages');
+let getImages = require('../modules/puppeteer/getImagesFromUnsplash');
 jest.setTimeout(10000);
 
 test('first',async ()=>{

@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 
 const url = 'https://www.istockphoto.com/pl/search/2/image?istockcollection=main%2Cvalue&phrase=';
 async function getImages(word) {
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.goto(`${url}${word}`);
@@ -12,7 +12,7 @@ async function getImages(word) {
         let images = [];
         for (const elem of elements) { images.push(elem.src)}
 
-        return {images}
+        return images
     })
     await browser.close();
     return images;

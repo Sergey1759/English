@@ -2,11 +2,10 @@ const TelegramBot = require('node-telegram-bot-api');
 const User = require('../../api/user');
 const Word = require('../../api/word');
 
-const getDescription = require('./image-description');
+const getDescription = require('./imageDescription');
+const getImages = require('./getImage');
 
 const translate = require('../puppeteer/getContextReverso');
-const getImages = require('../puppeteer/getImages');
-const getImagesFromIStock = require('../puppeteer/getImagesFromIstock');
 
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, {polling: true});
 const URLtoAuth = 'http://127.0.0.1:3000/auth';
@@ -35,14 +34,11 @@ bot.on('message', async (msg) => {
         default:
             const word = msg.text.trim();
             const result = await translate(word);
-            let {images} = await getImages(word);
-            if(images.length == 0) {
-                let buf = await getImagesFromIStock(word);
-                images = buf.images;
-            }
+            const images = await getImages(word);
 
             const savedWord = new Word(word,result.meanings,result.examples,images,msg.from.id);
             await savedWord.createWord();
+
             const baseImage = 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png';
             let img = images[0] || baseImage;
             const imageDescription = getDescription(word,result);

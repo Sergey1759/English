@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
 const url = 'https://unsplash.com/s/photos/';
-async function getImages(word) {
+async function getImagesFromUnsplash(word) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -19,4 +19,4 @@ async function getImages(word) {
     return images;
 }
 
-module.exports = getImages;
+module.exports = getImagesFromUnsplash;
