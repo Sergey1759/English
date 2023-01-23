@@ -9,7 +9,7 @@ class Result {
         this.date = new Date();
     }
 
-    async createTest(){
+    async create(){
         const {type,testId,result,date,userId} = this
         let res = new ResultModel({type,testId,result,date,userId})
         return await res.save();
