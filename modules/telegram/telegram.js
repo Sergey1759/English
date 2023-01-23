@@ -20,16 +20,13 @@ bot.on('message', async (msg) => {
 
     switch (msg.text) {
         case '/start':
-            let user = new User(msg.from.id, msg.from.first_name, msg.from.last_name, msg.from.username);
+            const nickForAuth = msg.from.username || `${msg.from.first_name}${msg.from.id}`
+            let user = new User(msg.from.id, msg.from.first_name, msg.from.last_name, nickForAuth);
             const {username,password} = await user.createUser()
             await bot.sendMessage(chatId, `You can manage yor words here [inline URL](${URLtoAuth}) , but you must login its your username - "${username}", its your password - "${password}"`);
             break;
         case '/help':
             await bot.sendMessage(chatId, "There is will be text how it work");
-            break;
-        case '/auth':
-            await bot.sendMessage(chatId, `visit this site [inline URL](${URLtoAuth}${msg.from.id})`);
-            await bot.sendMessage(chatId, `visit this site [inline URL](${URLtoAuth}${msg.from.id})`);
             break;
         default:
             const word = msg.text.trim();
@@ -42,6 +39,7 @@ bot.on('message', async (msg) => {
             const baseImage = 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png';
             let img = images[0] || baseImage;
             const imageDescription = getDescription(word,result);
+
             await bot.sendPhoto(chatId,img,{caption: imageDescription,parse_mode: 'html'})
     }
 });
