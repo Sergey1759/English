@@ -31,8 +31,9 @@ router.post('/checkTest', isAuthenticated,async function(req, res, next) {
     const {id,data} = req.body;
     let test = await ApiTest.CheckResult(req.user.id,id,data);
     let result = new ApiResult('text',id,test,req.user.id);
-    await result.createTest();
-    res.send({ title: 'Express' });
+    const response = await result.create();
+    console.log(response)
+    res.send({ id: response._id.toString() });
 });
 
 module.exports = router;

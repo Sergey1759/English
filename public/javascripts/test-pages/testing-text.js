@@ -15,6 +15,9 @@ nextBtn.addEventListener('click',async ()=>{
     if(currentPosition == window.words.length-1) {
         answers[window.words[currentPosition]._id] = answerEl.value;
         await postData('http://localhost:3000/test/checkTest',{data : answers, id : testId})
+            .then((result) => {
+                window.location = `http://localhost:3000/result/${result.id}`
+            })
     } else {
         answers[window.words[currentPosition]._id] = answerEl.value;
         currentPosition++;

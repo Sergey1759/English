@@ -14,7 +14,7 @@ btnCreateTest.addEventListener('click', async (event)=>{
 
     await postData('http://localhost:3000/test/createTest',
         {words,title,imageUrl,description})
-        .then(res => console.log(res));
+        .then(res => window.location = 'http://localhost:3000/test/all');
 })
 
 async function postData(url = '', data = {}) {
