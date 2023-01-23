@@ -12,7 +12,7 @@ async function getImagesFromUnsplash(word) {
         let images = [];
         for (const elem of elements) { images.push(elem.src)}
 
-        return {images}
+        return images
     })
 
     await browser.close();
