@@ -7,7 +7,7 @@
     "dev": "npm-run-all --parallel nodemon scss",
     "nodemon": "nodemon index.js",
     "scss": "sass --no-source-map --watch public/sass:public/stylesheets",
-    "test": "jest"
+    "test": "jest --verbose ./tests"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
