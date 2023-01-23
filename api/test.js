@@ -1,4 +1,5 @@
 const TestModel = require('../models/TestInputText');
+const {log} = require("debug");
 
 class Test {
     constructor(title,image,description,words,userId) {
@@ -21,6 +22,33 @@ class Test {
     }
     static async getByIdUserAndTestID(userId,_id){
         return await TestModel.findOne({userId : userId, _id : _id }).populate('words').exec();
+    }
+
+    static async CheckResult(userId,_id, answers){
+        let res = await  this.getByIdUserAndTestID(userId,_id);
+        return this.checkAnswersText(res,answers)
+    }
+    static checkAnswersText(test, answers){
+        let words = test.words;
+        let res = [];
+        for (const word of words) {
+            if(answers[word._id.toString()]) {
+                console.log('---------------------------')
+                console.log(answers[word._id.toString()]);
+                console.log(word.current.meaning);
+                console.log((answers[word._id.toString()] == word.current.meaning));
+                console.log('---------------------------')
+                res.push({
+                    word : word._id ,
+                    isCorrect : (answers[word._id.toString()] == word.current.meaning),
+                    answer: answers[word._id.toString()]
+                });
+            }
+        }
+
+
+        console.log(res);
+        return res;
     }
 }
 

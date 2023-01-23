@@ -5,13 +5,28 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const fs = require('fs');
+const hbs = require('hbs');
 
 dotenv.config()
+
+const partialsDir = __dirname + '/views/partials';
+const filenames = fs.readdirSync(partialsDir);
+filenames.forEach(function (filename) {
+  let matches = /^([^.]+).hbs$/.exec(filename);
+  if (!matches) {
+    return;
+  }
+  let name = matches[1];
+  let template = fs.readFileSync(partialsDir + '/' + filename, 'utf8');
+  hbs.registerPartial(name, template);
+});
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const wordRouter = require('./routes/word');
 const testRouter = require('./routes/test');
+const resultRouter = require('./routes/result');
 
 const app = express();
 app.use(cors());
@@ -33,6 +48,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/word', wordRouter);
 app.use('/test', testRouter);
+app.use('/result', resultRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

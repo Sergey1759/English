@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
+const isAuthenticated = require('./middleware/isAuthenticated');
 require('../modules/telegram');
 require('../modules/connectMongo');
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', isAuthenticated ,function(req, res, next) {
+  if(req.user) return res.redirect('word/all')
 });
 
 module.exports = router;

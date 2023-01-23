@@ -1,0 +1,26 @@
+<link rel='stylesheet' href='/stylesheets/result-pages/answers.css' />
+
+{{>navigation}}
+<div class="container">
+    {{#each answers.result}}
+        {{#if this.isCorrect}}
+            <div class="card-result correct">
+                <div class="image" style="background-image: url('{{this.word.current.image}}')"></div>
+                <div class="text">
+                    <h1>{{this.word.word}}</h1>
+                    <div class="rightAnswer">Right answer is : {{this.word.current.meaning}}</div>
+                </div>
+            </div>
+        {{else}}
+            <div class="card-result incorrect">
+                <div class="image" style="background-image: url('{{this.word.current.image}}')"></div>
+                <div class="text">
+                    <h1>{{this.word.word}}</h1>
+                    <div class="rightAnswer">Right answer is : {{this.word.current.meaning}}</div>
+                    <div class="userAnswer">Your answer is : {{this.answer}}</div>
+                </div>
+            </div>
+        {{/if}}
+    {{/each}}
+
+</div>

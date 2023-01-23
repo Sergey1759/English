@@ -1,27 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const ApiWords = require('../api/word');
-const Token = require('../modules/token')
+const isAuthenticated = require("./middleware/isAuthenticated");
 
-router.get('/all', async function(req, res, next) {
-    let verified = Token.verify(req.cookies.token);
-    const allWords = await ApiWords.getByUserId(verified.user.id);
-    res.render('word', { title: 'Express' , allWords});
+router.get('/all',isAuthenticated, async function(req, res, next) {
+    const allWords = await ApiWords.getByUserId(req.user.id);
+    res.render('word-pages/all', { title: 'Express' , allWords});
 });
 
-
-router.post('/save', async function(req, res, next) {
-    console.log(req.body);
-    let result = await ApiWords.changeCurrent(req.body);
-    res.send({ok : 'OK'});
-});
-
-router.get('/edit/:id', async function(req, res, next) {
+router.get('/edit/:id', isAuthenticated, async function(req, res, next) {
     const word = await ApiWords.getById(req.params.id);
-    console.log(word);
     let {current} = word;
     current = JSON.stringify(current);
-    res.render('edit', { title: 'Express' , word,current});
+    res.render('word-pages/edit', { title: 'Express' , word,current});
+});
+
+router.post('/save', isAuthenticated, async function(req, res, next) {
+    await ApiWords.changeCurrent(req.body);
+    res.send({ok : 'OK'});
 });
 
 module.exports = router;

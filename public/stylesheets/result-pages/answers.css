@@ -1,0 +1,30 @@
+.card-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 10px;
+}
+.card-result .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.card-result .text .rightAnswer {
+  color: darkgreen;
+  font-weight: bold;
+}
+.card-result .text .userAnswer {
+  color: darkred;
+}
+.card-result .text h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.correct {
+  border: 3px solid lightgreen;
+}
+
+.incorrect {
+  border: 3px solid lightcoral;
+}

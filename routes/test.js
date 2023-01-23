@@ -2,33 +2,37 @@ const express = require('express');
 const router = express.Router();
 const ApiWords = require('../api/word');
 const ApiTest = require('../api/test');
-const Token = require('../modules/token')
+const ApiResult = require('../api/result');
+const isAuthenticated = require('./middleware/isAuthenticated');
 
-router.get('/createTest', async function(req, res, next) {
-    let verified = Token.verify(req.cookies.token);
-    const allWords = await ApiWords.getByUserId(verified.user.id);
-    res.render('create-test', { title: 'Express' , allWords});
+router.get('/createTest', isAuthenticated,async function(req, res, next) {
+    const allWords = await ApiWords.getByUserId(req.user.id);
+    res.render('test-pages/create', { title: 'Express' , allWords});
 });
 
-router.get('/all', async function(req, res, next) {
-    let verified = Token.verify(req.cookies.token);
-    const tests = await ApiTest.getAllTestsByUserId(verified.user.id);
-    res.render('allTests', { title: 'Express' , tests});
+router.get('/all', isAuthenticated,async function(req, res, next) {
+    const tests = await ApiTest.getAllTestsByUserId(req.user.id);
+    res.render('test-pages/all', { title: 'Express' , tests});
 });
 
-router.post('/createTest', async function(req, res, next) {
-    let verified = Token.verify(req.cookies.token);
-    const body = req.body;
-    let test = new ApiTest(body.title,body.imageUrl,body.description,body.words,verified.user.id)
-    const result = await test.createTest();
+router.get('/testingText/:id', isAuthenticated,async function(req, res, next) {
+    const test = await ApiTest.getByIdUserAndTestID(req.user.id, req.params.id);
+    let JsonWords = JSON.stringify(test.words);
+    res.render('test-pages/testing-text', { title: 'Express' , JsonWords,idTest : test._id});
+});
+
+router.post('/createTest', isAuthenticated, async function(req, res, next) {
+    const {title,imageUrl,description,words} = req.body;
+    let test = new ApiTest(title,imageUrl,description,words,req.user.id)
+    await test.createTest();
     res.send({ title: 'Express' });
 });
-
-router.get('/testingText/:id', async function(req, res, next) {
-    let verified = Token.verify(req.cookies.token);
-    const test = await ApiTest.getByIdUserAndTestID(verified.user.id, req.params.id);
-    let JsonWords = JSON.stringify(test.words);
-    res.render('testing-text', { title: 'Express' , JsonWords});
+router.post('/checkTest', isAuthenticated,async function(req, res, next) {
+    const {id,data} = req.body;
+    let test = await ApiTest.CheckResult(req.user.id,id,data);
+    let result = new ApiResult('text',id,test,req.user.id);
+    await result.createTest();
+    res.send({ title: 'Express' });
 });
 
 module.exports = router;

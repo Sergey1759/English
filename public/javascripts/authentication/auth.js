@@ -11,7 +11,9 @@ btn_submit.addEventListener('click', async (event)=>{
             } else {
                 document.cookie = `token=${data.token}`
             }
-        }).then(() => window.location.href = `http://127.0.0.1:3000/word/all`);
+        }).then(() => {
+            setTimeout(()=>window.location.href = `http://127.0.0.1:3000/word/all`,2200);
+        });
 })
 
 async function postData(url = '', data = {}) {

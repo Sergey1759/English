@@ -1,0 +1,12 @@
+.result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 20px 0;
+  padding: 5px;
+  border: 1px solid lightseagreen;
+  border-radius: 5px;
+}
+.result button {
+  margin: 0;
+}
