@@ -10,3 +10,17 @@
 .result button {
   margin: 0;
 }
+
+.type-text, .type-radio {
+  padding: 3px 15px 3px 15px;
+  display: inline-block;
+  border-radius: 30%;
+}
+
+.type-radio {
+  background-color: lightgreen;
+}
+
+.type-text {
+  background-color: lightsalmon;
+}

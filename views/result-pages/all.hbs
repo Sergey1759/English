@@ -1,18 +1,35 @@
 <link rel='stylesheet' href='/stylesheets/result-pages/all.css' />
-
 {{>navigation}}
-<div class="container">
+
+<div class="grid grid-cols-3 gap-3 container">
     {{#each results}}
-        <div class="result">
-            <div class="date">
-                21.01.2023 12:23
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class="image rounded-lg" style="background-image: url({{this.testId.image}});"></div>
+            <div class="p-5">
+                <a href="#">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{this.testId.title}}</h5>
+                </a>
+                {{#if isRadio}}
+                    <p class="mb-3 type-radio font-normal text-gray-700 dark:text-gray-400">{{this.type}}</p>
+                {{else}}
+                    <p class="mb-3 type-text font-normal text-gray-700 dark:text-gray-400">{{this.type}}</p>
+                {{/if}}
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{this.testId.description}}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Amount question - <b>{{this.testId.words.length}}</b></p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Date : {{this.time}}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Test ID : {{this.testId._id}}</p>
+                {{#if isRadio}}
+                    <a href="http://localhost:3000/result/radio/{{this._id}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Show answers
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                {{else}}
+                    <a href="http://localhost:3000/result/{{this._id}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Show answers
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                {{/if}}
             </div>
-            <div class="type">
-                Type testing: {{this.type}}
-            </div>
-            <a href="http://localhost:3000/result/{{this._id}}">
-                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Show answers</button>
-            </a>
         </div>
     {{/each}}
 </div>
