@@ -20,7 +20,10 @@ class Result {
     }
 
     static async getByUserID(id){
-        return ResultModel.find({userId: id}).populate('result.word').exec();
+        return ResultModel.find({userId: id})
+            .populate('result.word')
+            .populate('testId')
+            .exec();
     }
     static async getByID(id){
         return ResultModel.findOne({_id: id}).populate('result.word').exec();
