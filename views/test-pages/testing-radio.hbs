@@ -1,0 +1,43 @@
+<link rel='stylesheet' href='/stylesheets/test-pages/testing-radio.css' />
+
+{{>navigation}}
+
+<div class="container_test">
+    <h3 class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600"><span id="now">1</span>/<span id="all"> 30</span> Questions</h3>
+    <div class="image" style="background-image: url('https://www.foodlocker.com.ng/public/product/green%20apple.png')"></div>
+
+    <h1>Enter correct answer <span id="word">(Apple is)</span></h1>
+    <div class="flex">
+        <div class="flex items-center mr-4">
+            <input id="variant-1" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="variant-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inline 1</label>
+        </div>
+        <div class="flex items-center mr-4">
+            <input id="variant-2" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="variant-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inline 2</label>
+        </div>
+        <div class="flex items-center mr-4">
+            <input id="variant-3" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="variant-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Inline checked</label>
+        </div>
+    </div>
+
+
+    <button type="button" id="next" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">send</button>
+</div>
+
+<input type="hidden" id="idTest" value="{{idTest}}">
+<script>
+    window.onload = () => {
+        window.words = {{{JsonWords}}};
+
+        const script = document.createElement('script');
+        script.src = '/javascripts/test-pages/testing-radio.js';
+        script.async = true;
+
+        script.onload = () => console.log('Script loaded successfuly');
+        script.onerror = () => console.log('Error occurred while loading script');
+
+        document.body.appendChild(script);
+    }
+</script>

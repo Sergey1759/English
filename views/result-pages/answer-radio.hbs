@@ -1,0 +1,51 @@
+<link rel='stylesheet' href='/stylesheets/result-pages/answers-radio.css' />
+
+{{>navigation}}
+
+{{#each result}}
+    {{#if this.isCorrect}}
+        <div class="container_test correct">
+            <div class="image" style="background-image: url('{{this.image}}')"></div>
+
+            <h1>Enter correct answer <span id="word">{{this.word}}</span></h1>
+
+            <div class="flex">
+                {{#each this.variants}}
+                    {{#if this.checked}}
+                        <div class="flex items-center mr-4">
+                            <input checked id="{{this.id}}" type="radio" value="" name="{{nameInput}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="{{this.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{this.value}}</label>
+                        </div>
+                    {{else}}
+                        <div class="flex items-center mr-4">
+                            <input id="{{this.id}}" type="radio" value="" name="{{nameInput}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="{{this.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{this.value}}</label>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    {{else}}
+        <div class="container_test incorrect">
+            <div class="image" style="background-image: url('{{this.image}}')"></div>
+
+            <h1>Enter correct answer <span id="word">{{this.word}}</span></h1>
+
+            <div class="flex">
+                {{#each this.variants}}
+                    {{#if this.checked}}
+                        <div class="flex items-center mr-4">
+                            <input checked id="{{this.id}}" type="radio" value="" name="{{nameInput}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="{{this.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{this.value}}</label>
+                        </div>
+                    {{else}}
+                        <div class="flex items-center mr-4">
+                            <input id="{{this.id}}" type="radio" value="" name="{{nameInput}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="{{this.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{this.value}}</label>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    {{/if}}
+{{/each}}

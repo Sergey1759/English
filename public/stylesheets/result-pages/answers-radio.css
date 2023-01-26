@@ -1,0 +1,26 @@
+.container_test:first-of-type {
+  margin-top: 100px !important;
+}
+
+.container_test {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 5px;
+  border: 3px solid;
+  border-radius: 7px;
+}
+.container_test h1 {
+  padding: 5px 0px;
+}
+.container_test .flex {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.container_test.correct {
+  border-color: darkgreen;
+}
+.container_test.incorrect {
+  border-color: darkred;
+}
