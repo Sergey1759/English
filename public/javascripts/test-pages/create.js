@@ -4,16 +4,14 @@ btnCreateTest.addEventListener('click', async (event)=>{
     event.preventDefault();
     const words = getArrayWordsId();
     const title = getTitle();
-    const imageUrl = getImageUrl();
     const description = getDescription();
 
-    if (words.length === 0) return showError('error words');
+    if (words.length <= 2) return showError('error words');
     if (title.length === 0) return showError('error title');
-    if (imageUrl.length === 0) return showError('error imageUrl');
     if (description.length === 0) return showError('error description');
 
     await postData('http://localhost:3000/test/createTest',
-        {words,title,imageUrl,description})
+        {words,title,description})
         .then(res => window.location = 'http://localhost:3000/test/all');
 })
 
@@ -33,9 +31,6 @@ function getArrayWordsId() {
 
 function getTitle() {
     return document.querySelector('#title').value;
-}
-function getImageUrl() {
-    return document.querySelector('#image_url').value;
 }
 function getDescription() {
     return document.querySelector('#message').value;
