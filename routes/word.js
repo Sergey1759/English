@@ -4,6 +4,7 @@ const ApiWords = require('../api/word');
 const isAuthenticated = require("./middleware/isAuthenticated");
 
 router.get('/all',isAuthenticated, async function(req, res, next) {
+    console.log(req.user)
     const allWords = await ApiWords.getByUserId(req.user.id);
     res.render('word-pages/all', { title: 'Express' , allWords});
 });

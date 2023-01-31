@@ -1,0 +1,36 @@
+
+@media (max-width: 400px) {
+  nav{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  #create-test{
+    margin: 0;
+  }
+  .container{
+    width: auto !important;
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    .image{
+      height: 100px;
+    }
+    .example-from{
+      display: none;
+    }
+    .container-create-test{
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      label{
+        padding: 3px !important;
+      }
+    }
+    .block{
+      display: flex;
+      flex-direction: column;
+      .word{
+        text-align: center;
+      }
+    }
+  }
+
+}

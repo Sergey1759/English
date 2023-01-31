@@ -18,10 +18,14 @@ class Test {
     }
 
     static async getAllTestsByUserId(userId){
-        return await TestModel.find({userId});
+        console.log(userId)
+        return await TestModel.find({userId : userId}).populate('words').exec();
     }
     static async getByIdUserAndTestID(userId,_id){
         return await TestModel.findOne({userId : userId, _id : _id }).populate('words').exec();
+    }
+    static async getById(_id){
+        return await TestModel.findOne({ _id }).populate('words').exec();
     }
 
     static async CheckResult(userId,_id, answers){
