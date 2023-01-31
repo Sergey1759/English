@@ -9,7 +9,7 @@ const getImages = require('./getImage');
 const translate = require('../puppeteer/getContextReverso');
 
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, {polling: true});
-const URLtoAuth = 'http://127.0.0.1:3000/auth';
+const URLtoAuth = 'http://5.44.252.253:3000/auth';
 
 bot.setMyCommands([
     {command:'/help' ,description:'Як це працює?'},
