@@ -12,7 +12,7 @@ btnCreateTest.addEventListener('click', async (event)=>{
 
     await postData('http://5.44.252.253:3000/test/createTest',
         {words,title,description})
-        .then(res => window.location = 'http://5.44.252.253:3000//test/all');
+        .then(res => window.location = 'http://5.44.252.253:3000/test/all');
 })
 
 async function postData(url = '', data = {}) {
