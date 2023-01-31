@@ -17,9 +17,9 @@ nextBtn.addEventListener('click',async ()=>{
     if( document.querySelectorAll('input:checked').length == 0) return showError('error');
     if(currentPosition == window.words.length-1) {
         updateObjectResult();
-        await postData('http://5.44.252.253:3000/test/checkTestRadio',answers)
+        await postData('/test/checkTestRadio',answers)
             .then((result) => {
-                window.location = `http://5.44.252.253:3000/result/radio/${result.id}`
+                window.location = `/result/radio/${result.id}`
             })
     } else {
         updateObjectResult();

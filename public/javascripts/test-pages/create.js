@@ -10,9 +10,9 @@ btnCreateTest.addEventListener('click', async (event)=>{
     if (title.length === 0) return showError('error title');
     if (description.length === 0) return showError('error description');
 
-    await postData('http://5.44.252.253:3000/test/createTest',
+    await postData('/test/createTest',
         {words,title,description})
-        .then(res => window.location = 'http://5.44.252.253:3000/test/all');
+        .then(res => window.location = '/test/all');
 })
 
 async function postData(url = '', data = {}) {

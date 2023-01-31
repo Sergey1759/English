@@ -14,9 +14,9 @@ nextBtn.addEventListener('click',async ()=>{
     if(!answerEl.value.trim()) return alert('enter data to input')
     if(currentPosition == window.words.length-1) {
         answers[window.words[currentPosition]._id] = answerEl.value;
-        await postData('http://5.44.252.253:3000/test/checkTest',{data : answers, id : testId})
+        await postData('/test/checkTest',{data : answers, id : testId})
             .then((result) => {
-                window.location = `http://5.44.252.253:3000/result/${result.id}`
+                window.location = `/result/${result.id}`
             })
     } else {
         answers[window.words[currentPosition]._id] = answerEl.value;
