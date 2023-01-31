@@ -4,8 +4,8 @@ const Bot = require("./Bot");
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, {polling: true});
 
 bot.setMyCommands([
-    {command:'help' ,description:'Як це працює?'},
-    {command:'auth' ,description:'Автентифікація'},
+    // {command:'help' ,description:'Як це працює?'},
+    // {command:'auth' ,description:'Автентифікація'},
     {command:'mytests' ,description:'Мої тести'}
 ])
 
