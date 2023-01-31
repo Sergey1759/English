@@ -7,7 +7,7 @@ module.exports = (req,res,next) =>{
             return next()
         }
     } catch (e) {
-        return res.redirect('http://localhost:3000/auth');
+        return res.redirect('http://5.44.252.253:3000/auth');
     }
     console.log('user');
 }

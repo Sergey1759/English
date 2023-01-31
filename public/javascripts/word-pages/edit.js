@@ -10,8 +10,8 @@ images.forEach(el =>{
 
 save.addEventListener('click',async ()=>{
     let values = getCurrentValues();
-    let res = await postData('http://localhost:3000/word/save',values)
-        .then(()=> window.location = 'http://localhost:3000/word/all');
+    let res = await postData('http://5.44.252.253:3000/word/save',values)
+        .then(()=> window.location = 'http://5.44.252.253:3000//word/all');
 });
 
 function clearActiveClass() {
