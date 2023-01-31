@@ -4,7 +4,7 @@ btn_submit.addEventListener('click', async (event)=>{
     event.preventDefault();
     const username = document.querySelector('input[name="username"]').value;
     const password = document.querySelector('input[name="password"]').value;
-    await postData('http://5.44.252.253:3000/auth/login', { username,password})
+    await postData('/auth/login', { username,password})
         .then((data) => {
             if(data.err) {
                 alert('Wrong data');
@@ -12,7 +12,7 @@ btn_submit.addEventListener('click', async (event)=>{
                 document.cookie = `token=${data.token}`
             }
         }).then(() => {
-            setTimeout(()=>window.location.href = `http://5.44.252.253:3000/word/all`,2200);
+            setTimeout(()=>window.location.href = `/word/all`,2200);
         });
 })
 
