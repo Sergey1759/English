@@ -1,1 +1,3 @@
-
+.load-more {
+  grid-column: 1/4 !important;
+}

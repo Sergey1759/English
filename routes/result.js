@@ -32,20 +32,24 @@ router.get('/radio/:id', isAuthenticated, async function(req, res, next) {
     let edited = [];
     for (const el of result.result) {
         let nameInput = generator.generate();
-        edited.push({
-            isCorrect: el.question._id.toString() == el.answer._id.toString(),
-            variants: el.variants.map(kl => {
-                let checked = kl._id.toString() == el.answer._id.toString()
-                return {
-                    checked,
-                    value: kl.current.meaning,
-                    nameInput,
-                    id: generator.generate()
-                }
-            }),
-            word: el.question.word,
-            image: el.question.current.image
-        })
+        try {
+            edited.push({
+                isCorrect: el.question._id.toString() == el.answer._id.toString(),
+                variants: el.variants.map(kl => {
+                    let checked = kl._id.toString() == el.answer._id.toString()
+                    return {
+                        checked,
+                        value: kl.current.meaning,
+                        nameInput,
+                        id: generator.generate()
+                    }
+                }),
+                word: el.question.word,
+                image: el.question.current.image
+            })
+        } catch (e) {
+
+        }
     }
     res.render('result-pages/answer-radio', { title: 'Express' , result : edited});
 });

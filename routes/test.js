@@ -14,7 +14,8 @@ router.get('/createTest', isAuthenticated,async function(req, res, next) {
 });
 
 router.get('/all', isAuthenticated,async function(req, res, next) {
-    const tests = await ApiTest.getAllTestsByUserId(req.user.id);
+    let tests = await ApiTest.getAllTestsByUserId(req.user.id);
+    tests = tests.filter(el => el.words.length > 2)
     res.render('test-pages/all', { title: 'Express' , tests});
 });
 

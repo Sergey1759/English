@@ -44,7 +44,7 @@ class Test {
                 console.log('---------------------------')
                 res.push({
                     word : word._id ,
-                    isCorrect : (answers[word._id.toString()] == word.current.meaning),
+                    isCorrect : (answers[word._id.toString()].trim().toLowerCase() == word.current.meaning.trim().toLowerCase()),
                     answer: answers[word._id.toString()]
                 });
             }

@@ -10,7 +10,16 @@ let nextBtn = document.querySelector('#next');
 
 let currentPosition = 0;
 let answers = {};
+document.onkeydown = async function(e){
+    if(e.keyCode == 13){
+        await next();
+    }
+};
 nextBtn.addEventListener('click',async ()=>{
+   await next();
+});
+
+async function next() {
     if(!answerEl.value.trim()) return alert('enter data to input')
     if(currentPosition == window.words.length-1) {
         answers[window.words[currentPosition]._id] = answerEl.value;
@@ -24,7 +33,7 @@ nextBtn.addEventListener('click',async ()=>{
         updateSlide();
         answerEl.value = '';
     }
-});
+}
 function updateSlide() {
     const element = window.words[currentPosition];
     document.querySelector('.image').style.backgroundImage = `url("${element.current.image}")`;

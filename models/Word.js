@@ -5,6 +5,7 @@ const word = new Schema({
     examples: Schema.Types.Array,
     meanings: Schema.Types.Array,
     images: Schema.Types.Array,
+    created: Schema.Types.Date,
     current:{
         image: Schema.Types.String,
         example: Object,
