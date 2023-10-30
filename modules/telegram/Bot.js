@@ -17,7 +17,7 @@ class Bot extends Helper{
         const nickForAuth = msg.from.username || `${msg.from.first_name}${msg.from.id}`
         let user = new User(msg.from.id, msg.from.first_name, msg.from.last_name, nickForAuth);
         const {username,password} = await user.createUser()
-        await this.bot.sendMessage(msg.chat.id, `You can manage yor words here [inline URL](http://5.44.252.253:3000/auth) , but you must login its your username - "${username}", its your password - "${password}"`);
+        await this.bot.sendMessage(msg.chat.id, `You can manage yor words here [inline URL](${process.env.MAIN_HOST}/auth) , but you must login its your username - "${username}", its your password - "${password}"`);
         await this.bot.sendMessage(msg.chat.id, `${username}`);
         await this.bot.sendMessage(msg.chat.id, `${password}`);
         return true

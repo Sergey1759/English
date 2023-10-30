@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
         if(user) {return res.redirect('word/all')};
     }
 
-    res.render('auth', { title: 'Express' });
+    res.render('auth', { title: 'Express', telegram_url : process.env.TELEGRAM_URL_BOT });
 });
 
 router.post('/login', async function(req, res, next) {
