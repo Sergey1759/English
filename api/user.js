@@ -8,6 +8,7 @@ class User {
         this.last_name = last_name;
         this.username = username;
         this.password = generator.generate({length: 10, numbers: true});
+        this.passedSlides = 0;
     }
 
     async createUser(){
@@ -17,6 +18,7 @@ class User {
             last_name: this.last_name,
             username: this.username,
             password: this.password,
+            passedSlides: this.passedSlides,
         })
         await user.save();
         return {username: this.username, password:this.password}
@@ -29,6 +31,13 @@ class User {
      */
     static async IsExist(username){
         return UserModel.findOne({username});
+    }
+
+    static async updatePassedSlides(_id,passedSlides){
+        return await UserModel.findByIdAndUpdate(_id, {passedSlides : passedSlides})
+    }
+    static async findById(_id){
+        return await UserModel.findById(_id);
     }
 
     /**

@@ -23,7 +23,7 @@ router.get('/edit/:id', isAuthenticated, async function(req, res, next) {
 });
 router.get('/remove/:id', isAuthenticated, async function(req, res, next) {
     const word = await ApiWords.remove(req.params.id);
-    // res.redirect('/')
+    res.redirect('/')
 });
 router.post('/save', isAuthenticated, async function(req, res, next) {
     await ApiWords.changeCurrent(req.body);

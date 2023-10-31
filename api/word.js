@@ -8,14 +8,15 @@ class Word {
         this.meanings = meanings || [];
         this.images = images || [];
         this.userId = userId;
+        this.slidesCheck = 0;
     }
 
     async createWord(){
-        let {word,examples,meanings,images,userId,created} = {...this};
+        let {word,examples,meanings,images,userId,created,slidesCheck} = {...this};
         images = Array.from(new Set(images));
         let notFound = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png';
         const current = {example : examples[0], meaning : meanings[0], image : images[0] || notFound}
-        let recordWord = new WordModel({word,examples,meanings,images,userId,current,created});
+        let recordWord = new WordModel({word,examples,meanings,images,userId,current,created,slidesCheck});
         let result = await recordWord.save();
         return result;
     }
@@ -41,6 +42,12 @@ class Word {
             .skip((page - 1) * limit)
             .exec();
     }
+
+    static async updateWordCheckSlides(_id){
+        let word = await Word.getById(_id);
+        return await WordModel.findByIdAndUpdate(_id, {slidesCheck : word.slidesCheck + 1})
+    }
+
     static async changeCurrent(objValues){
         let current = {example: objValues.example, meaning: objValues.meaning, image: objValues.image}
         return await WordModel.findByIdAndUpdate(objValues.id, {current})

@@ -9,6 +9,7 @@ const user = new Schema({
     last_name: Schema.Types.String,
     username: Schema.Types.String,
     password: Schema.Types.String,
+    passedSlides: Schema.Types.Number,
 });
 
 module.exports = model('User',user);

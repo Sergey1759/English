@@ -1,0 +1,31 @@
+{{>navigation}}
+<link rel='stylesheet' href='/stylesheets/slides.css' />
+<div class="slide-container">
+
+    <div class="container-language">
+        <h5>Choose language which will represent on slide </h5>
+        <div class="container-btn language">
+            <div class="btn chosen">English</div>
+            <div class="btn">Native</div>
+        </div>
+    </div>
+
+    <div class="container-word">
+        <div class="image" style="background-image: url('{{word.current.image}}')">
+
+        </div>
+        <div class="word">{{word.word}}</div>
+        <div class="btn translate">translate</div>
+    </div>
+
+    <div class="container-btn result">
+        <div class="btn" id="know">I Know</div>
+        <div class="btn" id="dont">I don`t know</div>
+    </div>
+</div>
+
+<input type="hidden" id="word_id" value="{{word._id}}">
+<input type="hidden" id="word" value="{{word.word}}" >
+<input type="hidden" id="word_meaning" value="{{word.current.meaning}}">
+
+<script src="/javascripts/slides.js"></script>
