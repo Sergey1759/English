@@ -1,0 +1,15 @@
+.story {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.addToVocabulary {
+  transition: 0.5s;
+  font-weight: bold;
+}
+.addToVocabulary:hover {
+  transition: 0.5s;
+  color: #5050e1;
+  font-weight: bold;
+  cursor: pointer;
+}

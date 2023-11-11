@@ -47,6 +47,22 @@ dont.addEventListener('click', async ()=>{
 
 });
 
+let playUS = document.querySelector('.us .play');
+let playUK = document.querySelector('.uk .play');
+
+
+playUS.addEventListener('click', ()=>{
+    let srcUS = document.querySelector('#us_audio');
+    let audio = new Audio(srcUS.value);
+    audio.play();
+});
+
+playUK.addEventListener('click', ()=>{
+    let srcUK = document.querySelector('#uk_audio');
+    let audio = new Audio(srcUK.value);
+    audio.play();
+});
+
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {

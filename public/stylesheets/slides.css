@@ -70,3 +70,29 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.play {
+  width: 30px;
+  height: 30px;
+}
+
+.transcription {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transcription .uk, .transcription .us {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.transcription div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transcription .play {
+  margin: 10px;
+  background-image: url("https://global.discourse-cdn.com/freecodecamp/optimized/4X/0/8/6/086ce06005f8c801eab3b1b10515aa6d1045d19b_2_1024x1020.png");
+  background-position: center;
+  background-size: cover;
+}

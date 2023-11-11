@@ -6,6 +6,7 @@ const getImages = require("./getImage");
 const Word = require("../../api/word");
 const ApiResult = require("../../api/result-radio");
 const getDescription = require("./imageDescription");
+const creatingWord = require("../creatingWord");
 
 class Bot extends Helper{
     constructor(bot) {
@@ -31,17 +32,13 @@ class Bot extends Helper{
         return true
     }
     async commandWord(msg){
-        const word = msg.text.trim();
-        const result = await translate(word);
-        const images = await getImages(word);
-
-        const savedWord = new Word(word,result.meanings,result.examples,images,msg.from.id);
-        await savedWord.createWord();
-
-        let img = images[0] || 'https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png';
-        const imageDescription = getDescription(word,result);
-
-        await this.bot.sendPhoto(msg.chat.id,img,{caption: imageDescription,parse_mode: 'html'})
+        let {wordDB} = await creatingWord(msg.text,msg.from.id);
+        console.log('before')
+        console.log(wordDB.word);
+        const imageDescription = getDescription(wordDB);
+        console.log(wordDB.word);
+        console.log('after')
+        await this.bot.sendPhoto(msg.chat.id,wordDB.images[0],{caption: imageDescription,parse_mode: 'html'})
         return true
     }
 

@@ -28,6 +28,8 @@ const wordRouter = require('./routes/word');
 const testRouter = require('./routes/test');
 const resultRouter = require('./routes/result');
 const slideRouter = require('./routes/slides');
+const storyRouter = require('./routes/stories');
+const transcriptionRouter = require('./routes/transcription');
 
 const app = express();
 app.use(cors());
@@ -51,6 +53,8 @@ app.use('/word', wordRouter);
 app.use('/test', testRouter);
 app.use('/result', resultRouter);
 app.use('/slides', slideRouter);
+app.use('/stories', storyRouter);
+app.use('/transcription', transcriptionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

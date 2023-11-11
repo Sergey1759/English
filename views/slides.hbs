@@ -15,6 +15,18 @@
 
         </div>
         <div class="word">{{word.word}}</div>
+        <div class="transcription">
+            <div class="us">
+                <input type="hidden" value="{{transcription.US.audio}}" id="us_audio">
+                <div class="text">{{transcription.US.transcription}}</div>
+                <div class="play"></div>
+            </div>
+            <div class="uk">
+                <input type="hidden" value="{{transcription.UK.audio}}" id="uk_audio">
+                <div class="text">{{transcription.UK.transcription}}</div>
+                <div class="play"></div>
+            </div>
+        </div>
         <div class="btn translate">translate</div>
     </div>
 

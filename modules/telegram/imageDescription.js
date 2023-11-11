@@ -1,11 +1,11 @@
-module.exports = function (word,result) {
+module.exports = function (word) {
 return `
-<strong>${word}</strong> -- <i>${result?.meanings[0]}, ${result?.meanings[1]}, ${result?.meanings[2]}</i>
+<strong>${word.word}</strong> -- <i>${word?.meanings[0]}, ${word?.meanings[1]}, ${word?.meanings[2]}</i>
             
-${result?.examples[0]?.from}
-${result?.examples[0]?.to}
+${word?.examples[0]?.from}
+${word?.examples[0]?.to}
 
-${result?.examples[1]?.from}
-${result?.examples[1]?.to}
+${word?.examples[1]?.from}
+${word?.examples[1]?.to}
 `
 }
