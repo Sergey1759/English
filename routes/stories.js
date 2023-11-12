@@ -19,8 +19,8 @@ router.post('/',isAuthenticated, async function(req, res, next) {
     let json = JSON.parse(story);
 
     let img1 = await Gpt.getImage(json.image_prompts[0].description);
-    let time = new Date.now();
-    await fs.writeFile(`./public/images/${time}.jpg`, img1, {encoding: 'base64'}, function(err) {
+    let time =  Date.now();
+    await fs.writeFile(`./public/stories/images/${time}.jpg`, img1, {encoding: 'base64'}, function(err) {
         console.log('File created');
     });
 
