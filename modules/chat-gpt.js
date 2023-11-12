@@ -3,17 +3,29 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_KEY, // defaults to process.env["OPENAI_API_KEY"]
+    apiKey: process.env.OPENAI_KEY,
 });
 
-async function main(query) {
+async function getStory(query) {
     const chatCompletion = await openai.chat.completions.create({
         messages: [{ role: 'user', content: query }],
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
     });
 
     return chatCompletion.choices[0].message.content;
 }
+async function getImage(prompt) {
+    const chatCompletion = await openai.images.generate({
+        prompt,
+        n: 1,
+        size: '1024x1024',
+        response_format: 'b64_json',
+    });
+
+    return chatCompletion.data[0].b64_json;
+}
 
 
-module.exports = main;
+
+
+module.exports = {getStory,getImage};
