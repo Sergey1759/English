@@ -1,7 +1,5 @@
 module.exports = `
-
-write new story and give it in json format like here 
-
+write new life story using these words (words red light) and give me only json format like here
 {
   "chapters": [
     {
