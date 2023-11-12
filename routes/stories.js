@@ -5,8 +5,8 @@ const Word = require('../api/word');
 const Gpt = require('../modules/AI/chat-gpt')
 const translate = require("../modules/puppeteer/getContextReverso");
 const getImages = require("../modules/telegram/getImage");
-const fs = require("fs");
 
+const saveImage = require("../modules/saveImages");
 const prompt = require('../modules/AI/promptForStory');
 
 router.get('/',isAuthenticated, async function(req, res, next) {
@@ -18,13 +18,18 @@ router.post('/',isAuthenticated, async function(req, res, next) {
     let story = await Gpt.getStory(prompt);
     let json = JSON.parse(story);
 
-    let img1 = await Gpt.getImage(json.image_prompts[0].description);
-    let time =  Date.now();
-    await fs.writeFile(`./public/stories/images/${time}.jpg`, img1, {encoding: 'base64'}, function(err) {
-        console.log('File created');
-    });
+    // let img1 = await Gpt.getImage(json.image_prompts[0].description);
+    // let src1 = await saveImage(img1);
+    //
+    // let img2 = await Gpt.getImage(json.image_prompts[1].description);
+    // let src2 = await saveImage(img2);
 
-    res.send({story: json.chapters[0].content, src : `/images/${time}.jpg`})
+    res.send({
+        chapter1: json.chapters[0].content,
+        chapter2: json.chapters[1].content,
+        // src1 : src1.slice(8),
+        // src2 : src2.slice(8),
+    })
 });
 
 router.post('/createWord',isAuthenticated, async function(req, res, next) {

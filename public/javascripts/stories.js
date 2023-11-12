@@ -2,21 +2,31 @@ let createStory = document.querySelector('#create-story');
 let divStory = document.querySelector('.story');
 
 createStory.addEventListener('click', async ()=>{
-    let {story, src}  = await postData('/stories/' , {words: getWordsForStory()});
+    createStory.querySelector('#svg').style.display = 'block';
+    createStory.querySelector('.text').innerText = 'Loading...';
 
-    let htmlFromText = story.split(' ').map(word => `<span class="addToVocabulary">${word}</span>`);
+    let {chapter1, chapter2, src1, src2}  = await postData('/stories/' , {words: getWordsForStory()});
 
-    let div = document.createElement('div');
-    div.innerHTML = htmlFromText.join(' ');
-    divStory.appendChild(div);
+    createStory.querySelector('#svg').style.display = 'none';
+    createStory.querySelector('.text').innerText = 'Create';
 
-    let image = document.createElement('img');
-    image.src = src;
-    divStory.appendChild(image);
+
+    createChapter(chapter1,src1, divStory);
+    createChapter(chapter2,src2, divStory);
 
     addListenerToWords();
 });
+function createChapter(chapter,src,parentElement) {
+    let htmlFromText = chapter.split(' ').map(word => `<span class="addToVocabulary">${word}</span>`);
 
+    let div = document.createElement('div');
+    div.innerHTML = htmlFromText.join(' ');
+    parentElement.appendChild(div);
+
+    let image = document.createElement('img');
+    image.src = src;
+    parentElement.appendChild(image);
+}
 function addListenerToWords() {
     let addToVocabulary = document.querySelectorAll('.addToVocabulary');
 
