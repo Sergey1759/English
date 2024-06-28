@@ -18,10 +18,10 @@ router.get('/',isAuthenticated, async function(req, res, next) {
 });
 
 router.post('/',isAuthenticated, async function(req, res, next) {
-    let promptForGpt = prompt(req.body.words);
+    let words = req.body.words.split(' ');
+    let promptForGpt = prompt(words);
     let story = await Gpt.getStory(promptForGpt);
     let arrayOfSentences = getSentences(story);
-
 
     let paragraphs = []
     for (const paragraph of arrayOfSentences) {
@@ -32,14 +32,11 @@ router.post('/',isAuthenticated, async function(req, res, next) {
         paragraphs.push(sentences);
     }
 
-    let storyDB = new Story(req.user.id,paragraphs);
+
+    res.send({story : paragraphs})
+
+    let storyDB = new Story(req.user.id,paragraphs,words);
     await storyDB.create();
-
-    console.log(paragraphs);
-
-    res.send({
-        story : paragraphs
-    })
 });
 
 
