@@ -13,3 +13,17 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.paragraph {
+  width: 70%;
+  margin: 20px auto;
+}
+.paragraph .sentence {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+.paragraph .translate {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.56);
+}

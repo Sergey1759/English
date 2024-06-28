@@ -9,7 +9,7 @@ const openai = new OpenAI({
 async function getStory(query) {
     const chatCompletion = await openai.chat.completions.create({
         messages: [{ role: 'user', content: query }],
-        model: 'gpt-4',
+        model: 'gpt-4o',
     });
 
     return chatCompletion.choices[0].message.content;

@@ -13,3 +13,17 @@
     cursor: pointer;
   }
 }
+
+.paragraph{
+  width: 70%;
+  margin: 20px auto;
+  .sentence{
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+  }
+  .translate{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.56);
+  }
+}

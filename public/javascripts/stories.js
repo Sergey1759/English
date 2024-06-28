@@ -5,16 +5,32 @@ createStory.addEventListener('click', async ()=>{
     createStory.querySelector('#svg').style.display = 'block';
     createStory.querySelector('.text').innerText = 'Loading...';
 
-    let {chapter1, chapter2, src1, src2}  = await postData('/stories/' , {words: getWordsForStory()});
+    let {story}  = await postData('/stories/' , {words: getWordsForStory()});
 
     createStory.querySelector('#svg').style.display = 'none';
     createStory.querySelector('.text').innerText = 'Create';
 
+    for (const paragraph of story) {
+        let parentDiv = document.createElement('div');
+        parentDiv.classList.add('paragraph');
+        for (const paragraphElement of paragraph) {
+            console.log(paragraphElement)
+            let sentenceP = document.createElement('p');
+            sentenceP.innerText = paragraphElement.sentence;
+            sentenceP.classList.add('sentance');
 
-    createChapter(chapter1,src1, divStory);
-    createChapter(chapter2,src2, divStory);
+            let translateP = document.createElement('p');
+            translateP.innerText = paragraphElement.translate;
+            translateP.classList.add('translate');
 
-    addListenerToWords();
+            parentDiv.appendChild(sentenceP);
+            parentDiv.appendChild(translateP);
+        }
+        document.body.appendChild(parentDiv);
+    }
+
+
+    // addListenerToWords();
 });
 function createChapter(chapter,src,parentElement) {
     let htmlFromText = chapter.split(' ').map(word => `<span class="addToVocabulary">${word}</span>`);
