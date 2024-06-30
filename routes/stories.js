@@ -17,6 +17,21 @@ router.get('/',isAuthenticated, async function(req, res, next) {
     res.render('stories', { title: 'Express', words});
 });
 
+router.get('/story',isAuthenticated, async function(req, res, next) {
+    let story = await Story.findById('667f5b70ad4abf59bb8da7e4');
+    let wordsToFind = story.wordIds.reduce((acc, Word) => {
+        console.log(Word.variantsOfWord)
+        Word.variantsOfWord[0] = capitalizeFirstLetter(Word.variantsOfWord[0]);
+        acc.push({idAndClass: Word.variantsOfWord[0], variants : Word.variantsOfWord});
+        return acc;
+    },[])
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    console.log(wordsToFind)
+    res.render('story', { title: 'Express', story, wordsToFind: wordsToFind});
+});
+
 router.post('/',isAuthenticated, async function(req, res, next) {
     let words = req.body.words.split(' ');
     let promptForGpt = prompt(words);
@@ -35,7 +50,7 @@ router.post('/',isAuthenticated, async function(req, res, next) {
 
     res.send({story : paragraphs})
 
-    let storyDB = new Story(req.user.id,paragraphs,words);
+    let storyDB = new Story(req.user.id,paragraphs,words,req.body.ids);
     await storyDB.create();
 });
 

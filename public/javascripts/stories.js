@@ -5,7 +5,7 @@ createStory.addEventListener('click', async ()=>{
     createStory.querySelector('#svg').style.display = 'block';
     createStory.querySelector('.text').innerText = 'Loading...';
 
-    let {story}  = await postData('/stories/' , {words: getWordsForStory()});
+    let {story}  = await postData('/stories/' , {words: getWordsForStory().words, ids: getWordsForStory().ids});
 
     createStory.querySelector('#svg').style.display = 'none';
     createStory.querySelector('.text').innerText = 'Create';
@@ -58,10 +58,14 @@ function getWordsForStory() {
     const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
 
     let arrayWords = [];
+    let arrayIds = [];
     for (let checkBox of checkBoxes) {
-        if(checkBox.checked) arrayWords.push(checkBox.value)
+        if(checkBox.checked) {
+            arrayWords.push(checkBox.value)
+            arrayIds.push(checkBox.id)
+        }
     }
-    return  arrayWords.join(' ');
+    return  {words: arrayWords.join(' ') , ids :arrayIds};
 }
 
 

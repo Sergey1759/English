@@ -2,6 +2,7 @@ const {Schema,model} = require('mongoose');
 
 const word = new Schema({
     word: Schema.Types.String,
+    variantsOfWord: Schema.Types.Array,
     examples: Schema.Types.Array,
     meanings: Schema.Types.Array,
     images: Schema.Types.Array,

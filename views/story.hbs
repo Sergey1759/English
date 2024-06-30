@@ -1,0 +1,74 @@
+<link rel='stylesheet' href='/stylesheets/stories.css' />
+
+
+{{>navigation}}
+
+<div class="container-story">
+    <h1>Keywords</h1>
+
+    <div class="keywords">
+        {{#each wordsToFind}}
+            <div class="{{this.idAndClass}}">{{this.idAndClass}}</div>
+            <input type="hidden" value="{{this.variants}}" id="{{this.idAndClass}}">
+        {{/each}}
+    </div>
+
+
+    <div class="article">
+        {{#each story.paragraphs}}
+            <div class="paragraph">
+                {{#each this}}
+                    <p class="sentence">{{this.sentence}}</p>
+                    <p class="translate">{{this.translate}}</p>
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    function doIt() {
+        let keywords = document.querySelectorAll('.keywords div');
+
+        const inputs = document.querySelectorAll('input');
+
+        const readableColorClasses = [
+            'color-dark-red',
+            'color-dark-green',
+            'color-dark-blue',
+            'color-dark-orange',
+            'color-dark-cyan',
+            'color-dark-magenta',
+            'color-dark-purple',
+            'color-dark-goldenrod',
+            'color-saddle-brown',
+            'color-dark-slate-gray'
+        ];
+
+        inputs.forEach((input, idx) =>{
+            let article = document.querySelector('.article').innerHTML;
+            const keywordClass =  input.id;
+            const wordsToFind = input.value;
+            const keywordDiv = document.querySelector(`.${keywordClass}`);
+
+            const wordsArray = wordsToFind.split(',');
+            keywordDiv.classList.add(readableColorClasses[idx]);
+            document.querySelector('.article').innerHTML = replaceWords(article, wordsArray, readableColorClasses[idx]);
+        });
+
+        function replaceWords(content, wordsArray,className) {
+            const regexPattern = new RegExp(wordsArray.join('|'), 'gi');
+            return content.replace(regexPattern, match => `<span class="highlight ${className}">${match}</span>`);
+        }
+        //
+        // const replacedContent = replaceWords(article, wordsArray);
+        // document.querySelector('.article').innerHTML = replacedContent;
+    }
+
+    setTimeout(()=>{
+        doIt();
+    },2000)
+
+</script>
+
+<!--<script src="/javascripts/test-pages/create.js"></script>-->

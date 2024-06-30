@@ -23,8 +23,8 @@
     "moment": "^2.29.4",
     "mongoose": "^6.8.3",
     "morgan": "~1.9.1",
-    "node-telegram-bot-api": "^0.66.0",
-    "openai": "^4.14.2",
+    "node-telegram-bot-api": "^0.63.0",
+    "openai": "^4.52.2",
     "puppeteer": "^22.12.1",
     "sass": "^1.57.1"
   },

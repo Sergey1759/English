@@ -14,8 +14,31 @@
   cursor: pointer;
 }
 
-.paragraph {
+.container-story {
   width: 70%;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.keywords {
+  color: #5050e1;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.keywords div {
+  border: solid 1px;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.paragraph {
   margin: 20px auto;
 }
 .paragraph .sentence {
@@ -26,4 +49,74 @@
 .paragraph .translate {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.56);
+}
+
+.highlight {
+  font-weight: bold;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+}
+
+/* Dark Red */
+.color-dark-red {
+  color: #8B0000;
+  border-color: #8B0000;
+}
+
+/* Dark Green */
+.color-dark-green {
+  color: #006400;
+  border-color: #006400;
+}
+
+/* Dark Blue */
+.color-dark-blue {
+  color: #00008B;
+  border-color: #00008B;
+}
+
+/* Dark Orange */
+.color-dark-orange {
+  color: #FF8C00;
+  border-color: #FF8C00;
+}
+
+/* Dark Cyan */
+.color-dark-cyan {
+  color: #008B8B;
+  border-color: #008B8B;
+}
+
+/* Dark Magenta */
+.color-dark-magenta {
+  color: #8B008B;
+  border-color: #8B008B;
+}
+
+/* Dark Purple */
+.color-dark-purple {
+  color: #4B0082;
+  border-color: #4B0082;
+}
+
+/* Dark Goldenrod */
+.color-dark-goldenrod {
+  color: #B8860B;
+  border-color: #B8860B;
+}
+
+/* Saddle Brown */
+.color-saddle-brown {
+  color: #8B4513;
+  border-color: #8B4513;
+}
+
+/* Dark Slate Gray */
+.color-dark-slate-gray {
+  color: #2F4F4F;
+  border-color: #2F4F4F;
 }

@@ -1,8 +1,9 @@
 const WordModel = require('../models/Word');
 
 class Word {
-    constructor(word,meanings,examples,images,userId) {
+    constructor(word,variantsOfWord,meanings,examples,images,userId) {
         this.word = word;
+        this.variantsOfWord = variantsOfWord;
         this.created = new Date();
         this.examples = examples || [];
         this.meanings = meanings || [];
@@ -12,11 +13,11 @@ class Word {
     }
 
     async createWord(){
-        let {word,examples,meanings,images,userId,created,slidesCheck} = {...this};
+        let {word,examples,meanings,images,userId,created,slidesCheck, variantsOfWord} = {...this};
         images = Array.from(new Set(images));
         let notFound = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png';
         const current = {example : examples[0], meaning : meanings[0], image : images[0] || notFound}
-        let recordWord = new WordModel({word,examples,meanings,images,userId,current,created,slidesCheck});
+        let recordWord = new WordModel({word,variantsOfWord,examples,meanings,images,userId,current,created,slidesCheck});
         let result = await recordWord.save();
         return result;
     }
